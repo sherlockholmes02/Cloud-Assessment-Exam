@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam.ui.theme
+package com.example.cloudassessmentexam.design_system.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam.ui.theme
+package com.example.cloudassessmentexam.design_system.theme
 
 import androidx.compose.ui.graphics.Color
 

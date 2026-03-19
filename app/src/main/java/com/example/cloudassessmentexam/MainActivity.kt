@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.cloudassessmentexam.data.User
 import com.example.cloudassessmentexam.design_system.composables.CloudTopAppBar
 import com.example.cloudassessmentexam.design_system.composables.UserItem
-import com.example.cloudassessmentexam.ui.theme.CloudassessmentexamTheme
+import com.example.cloudassessmentexam.design_system.theme.CloudassessmentexamTheme
 
 class MainActivity : ComponentActivity() {
 
