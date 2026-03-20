@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam.design_system.composables
+package com.example.cloudassessmentexam.presentation.design_system.composables
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons

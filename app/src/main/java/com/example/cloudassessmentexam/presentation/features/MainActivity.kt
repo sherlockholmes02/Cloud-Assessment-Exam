@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam
+package com.example.cloudassessmentexam.presentation.features
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,11 +13,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.example.cloudassessmentexam.R
 import com.example.cloudassessmentexam.data.User
-import com.example.cloudassessmentexam.design_system.composables.CloudTopAppBar
-import com.example.cloudassessmentexam.design_system.composables.UserItem
-import com.example.cloudassessmentexam.design_system.theme.CloudassessmentexamTheme
+import com.example.cloudassessmentexam.presentation.design_system.composables.CloudTopAppBar
+import com.example.cloudassessmentexam.presentation.design_system.composables.UserItem
+import com.example.cloudassessmentexam.presentation.design_system.theme.CloudassessmentexamTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     // TODO: Update when integrating with API

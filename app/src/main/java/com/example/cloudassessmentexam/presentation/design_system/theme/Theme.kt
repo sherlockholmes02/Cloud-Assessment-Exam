@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam.design_system.theme
+package com.example.cloudassessmentexam.presentation.design_system.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
