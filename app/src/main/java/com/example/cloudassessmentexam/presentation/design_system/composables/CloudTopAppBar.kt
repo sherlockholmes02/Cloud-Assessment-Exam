@@ -1,6 +1,5 @@
 package com.example.cloudassessmentexam.presentation.design_system.composables
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
@@ -9,19 +8,23 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.cloudassessmentexam.R
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CloudTopAppBar(title: String? = null, onActionButtonClick: (() -> Unit)? = null) {
+fun CloudTopAppBar(
+    title: String? = null,
+    navigationIcon: ImageVector?,
+    onNavigationButtonClick: (() -> Unit)? = null,
+    onActionButtonClick: (() -> Unit)? = null
+) {
     TopAppBar(
         title = {
             Text(
@@ -31,18 +34,25 @@ fun CloudTopAppBar(title: String? = null, onActionButtonClick: (() -> Unit)? = n
             )
         },
         navigationIcon = {
-            Icon(
-                Icons.Default.Person,
-                contentDescription = "",
-                modifier = Modifier.padding(horizontal = 12.dp)
-            )
+            IconButton(
+                onClick = { onNavigationButtonClick?.invoke() ?: null },
+                enabled = onNavigationButtonClick != null
+            ) {
+                Icon(
+                    navigationIcon ?: Icons.Default.Person,
+                    contentDescription = null,
+                    tint = colorResource(R.color.white)
+                )
+            }
         },
         actions = {
-            IconButton(onClick = { onActionButtonClick?.invoke() }) {
-                Icon(
-                    Icons.Default.Search,
-                    contentDescription = null
-                )
+            onActionButtonClick?.let {
+                IconButton(onClick = { onActionButtonClick.invoke() }) {
+                    Icon(
+                        Icons.Default.Search,
+                        contentDescription = null
+                    )
+                }
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(

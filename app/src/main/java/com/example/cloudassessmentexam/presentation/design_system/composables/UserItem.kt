@@ -27,11 +27,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 
 @Composable
-fun UserItem(user: User) {
+fun UserItem(
+    user: User,
+    navigateToUserDetails: (User) -> Unit,
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { }, elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
+            .clickable { navigateToUserDetails.invoke(user) }, elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(containerColor = colorResource(R.color.white))
     ) {
         Row(

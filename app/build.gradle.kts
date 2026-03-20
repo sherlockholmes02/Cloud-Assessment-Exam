@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.hilt)
     implementation(libs.google.dagger.hilt)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.http)
     ksp(libs.google.dagger.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

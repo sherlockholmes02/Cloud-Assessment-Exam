@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cloud Assessment Exam</string>
+    <string name="user_details">User Details</string>
 </resources>

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.10.1"
+# This kotlin version is safest for our agp version
 kotlin = "2.0.21"
 coreKtx = "1.18.0"
 junit = "4.13.2"
@@ -13,7 +14,10 @@ androidxHilt = "1.3.0"
 daggerHilt = "2.57.1"
 hiltAndroidCompiler = "2.57.1"
 hiltCompiler = "2.57.1"
+# Same with the above
 ksp = "2.0.10-1.0.24"
+# Should use this version as it's conflicting with Kotlin version
+coil = "3.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,7 +39,8 @@ androidx-hilt = { group =  "androidx.hilt", name = "hilt-navigation-compose", ve
 google-dagger-hilt = { group =  "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt"}
 google-dagger-hilt-compiler = { group =  "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroidCompiler"}
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose" , version.ref = "navigationCompose" }
-
+coil-compose = {group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-network-http = {group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
