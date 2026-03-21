@@ -4,7 +4,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.cloudassessmentexam.presentation.features.UserDetailsScreen
+import com.example.cloudassessmentexam.presentation.features.user_details.UserDetailsScreen
 import com.example.cloudassessmentexam.presentation.navigation.NavigationDestination
 import com.example.cloudassessmentexam.presentation.navigation.SharedViewModel
 

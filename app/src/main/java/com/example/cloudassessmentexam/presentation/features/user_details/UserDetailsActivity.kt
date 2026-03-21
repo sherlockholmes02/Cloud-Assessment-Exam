@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam.presentation.features
+package com.example.cloudassessmentexam.presentation.features.user_details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -22,7 +22,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Error
-import androidx.compose.material.icons.filled.Tag
+import androidx.compose.material.icons.filled.PersonPinCircle
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.SubcomposeAsyncImage
 import com.example.cloudassessmentexam.R
+import com.example.cloudassessmentexam.core.util.convertLongToDateString
 import com.example.cloudassessmentexam.data.User
 import com.example.cloudassessmentexam.presentation.design_system.composables.CloudTopAppBar
 
@@ -80,11 +81,11 @@ fun UserDetailsScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     SubcomposeAsyncImage(
-                        model = user?.avatarURL,
+                        model = user?.profileImage,
                         loading = {
                             CircularProgressIndicator(
                                 color = colorResource(R.color.primaryColor),
-                                )
+                            )
                         },
                         error = {
                             Icon(
@@ -115,7 +116,7 @@ fun UserDetailsScreen(
                     Spacer(Modifier.height(4.dp))
 
                     Text(
-                        text = "@${user?.username}",
+                        text = "@${user?.accountId}",
                         fontSize = 16.sp,
                         color = colorResource(R.color.gray)
                     )
@@ -132,10 +133,10 @@ fun UserDetailsScreen(
                 ) {
 
                     InfoRow(
-                        icon = Icons.Default.Tag,
+                        icon = Icons.Default.PersonPinCircle,
                         iconBg = colorResource(R.color.primaryColor),
                         label = "User ID",
-                        value = user?.id
+                        value = user?.location
                     )
 
                     InfoRow(
@@ -150,7 +151,7 @@ fun UserDetailsScreen(
                         icon = Icons.Default.DateRange,
                         iconBg = colorResource(R.color.green),
                         label = "Member Since",
-                        value = user?.memberSince
+                        value = convertLongToDateString(user?.memberSince ?: 0, "MMMM dd, yyyy")
                     )
                 }
             }

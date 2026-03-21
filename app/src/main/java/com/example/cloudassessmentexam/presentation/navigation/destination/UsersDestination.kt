@@ -3,7 +3,7 @@ package com.example.cloudassessmentexam.presentation.navigation.destination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.cloudassessmentexam.data.User
-import com.example.cloudassessmentexam.presentation.features.UsersScreen
+import com.example.cloudassessmentexam.presentation.features.users.UsersScreen
 import com.example.cloudassessmentexam.presentation.navigation.NavigationDestination
 
 object UsersDestination : NavigationDestination {

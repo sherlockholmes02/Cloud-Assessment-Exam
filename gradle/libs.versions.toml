@@ -15,9 +15,13 @@ daggerHilt = "2.57.1"
 hiltAndroidCompiler = "2.57.1"
 hiltCompiler = "2.57.1"
 # Same with the above
-ksp = "2.0.10-1.0.24"
+ksp = "2.0.21-1.0.25"
 # Should use this version as it's conflicting with Kotlin version
 coil = "3.0.0"
+runtimeLivedata = "1.10.5"
+retrofit = "2.11.0"
+http-logger = "4.12.0"
+lifecycleRuntimeComposeAndroid = "2.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +45,11 @@ google-dagger-hilt-compiler = { group =  "com.google.dagger", name = "hilt-andro
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose" , version.ref = "navigationCompose" }
 coil-compose = {group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil-network-http = {group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+squareup-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "http-logger" }
+androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

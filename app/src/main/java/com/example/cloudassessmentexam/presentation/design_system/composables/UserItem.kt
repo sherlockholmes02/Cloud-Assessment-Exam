@@ -1,13 +1,18 @@
 package com.example.cloudassessmentexam.presentation.design_system.composables
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -25,6 +30,7 @@ import com.example.cloudassessmentexam.data.User
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.EmojiEvents
 
 @Composable
 fun UserItem(
@@ -34,7 +40,8 @@ fun UserItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { navigateToUserDetails.invoke(user) }, elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
+            .clickable { navigateToUserDetails.invoke(user) },
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(containerColor = colorResource(R.color.white))
     ) {
         Row(
@@ -44,27 +51,40 @@ fun UserItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = user.name,
+                    text = user.displayName ?: "",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,
                 )
                 Spacer(modifier = Modifier.height(6.dp))
-                Surface(
-                    shape = RoundedCornerShape(50),
-                    color = colorResource(R.color.white),
-                    modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = colorResource(R.color.borderColor),
-                            shape = RoundedCornerShape(50),
+                Row {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .background(colorResource(R.color.orange), CircleShape),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.EmojiEvents,
+                            contentDescription = null,
+                            tint = colorResource(R.color.white),
                         )
-                        .padding(horizontal = 14.dp, vertical = 1.dp)
-                ) {
-                    Text(
-                        text = "ID: ${user.id}",
+                    }
+                    Spacer(Modifier.width(8.dp))
+                    Surface(
+                        shape = RoundedCornerShape(50), color = colorResource(R.color.orange),
 
-                        fontSize = 12.sp,
-                    )
+                    ) {
+                        Text(
+                            text = "${user.reputation}",
+                            modifier = Modifier.padding(
+                                horizontal = 12.dp, vertical = 2.dp
+                            ),
+                            color = colorResource(R.color.white),
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 14.sp
+
+                        )
+                    }
                 }
             }
             Icon(
