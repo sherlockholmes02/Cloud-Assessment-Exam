@@ -2,4 +2,6 @@
     <string name="app_name">Cloud Assessment Exam</string>
     <string name="user_details">User Details</string>
     <string name="loading_users">Loading users…</string>
+    <string name="retry">Retry</string>
+    <string name="searchUserByName">Search users by name</string>
 </resources>

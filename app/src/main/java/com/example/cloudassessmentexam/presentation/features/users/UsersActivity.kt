@@ -5,25 +5,33 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.CloudOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -34,17 +42,18 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.cloudassessmentexam.R
 import com.example.cloudassessmentexam.core.network.CoroutineErrorHandler
-import com.example.cloudassessmentexam.data.User
+import com.example.cloudassessmentexam.data.data_sources.User
 import com.example.cloudassessmentexam.data.models.BaseUiState
 import com.example.cloudassessmentexam.presentation.design_system.composables.CloudTopAppBar
 import com.example.cloudassessmentexam.presentation.design_system.composables.UserItem
 
 @Composable
 fun UsersScreen(
-    navigateToUserDetails: (User) -> Unit,
-    usersViewModel: UsersViewModel = hiltViewModel()
+    navigateToUserDetails: (User) -> Unit, usersViewModel: UsersViewModel = hiltViewModel()
 ) {
-    val usersState by usersViewModel.usersFlow.collectAsStateWithLifecycle()
+    val usersState by usersViewModel.filteredUsersState.collectAsStateWithLifecycle()
+    var query by remember { mutableStateOf("") }
+    var isSearchVisible by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         usersViewModel.loadUsers(object : CoroutineErrorHandler {
@@ -56,14 +65,22 @@ fun UsersScreen(
         modifier = Modifier.fillMaxSize(),
         contentColor = colorResource(R.color.backgroundColor),
         topBar = {
-            CloudTopAppBar(navigationIcon = Icons.Default.Person, onActionButtonClick = {})
+            CloudTopAppBar(
+                navigationIcon = Icons.Default.Person,
+                actionIcon = if (isSearchVisible) Icons.Default.Close else Icons.Default.Search,
+                onActionButtonClick = {
+                    isSearchVisible = !isSearchVisible
+                    if (!isSearchVisible) {
+                        query = ""
+                        usersViewModel.onSearchQueryChange(query)
+                    }
+                })
         }) { innerPadding ->
 
         when (val state = usersState) {
             is BaseUiState.Loading -> {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -83,13 +100,41 @@ fun UsersScreen(
             }
 
             is BaseUiState.Success -> {
-                LazyColumn(
-                    contentPadding = innerPadding,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                val users = state.data
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
                 ) {
-                    items(state.data) { user ->
-                        UserItem(user, navigateToUserDetails = navigateToUserDetails)
+                    if (isSearchVisible) {
+                        OutlinedTextField(
+                            value = query,
+                            onValueChange = {
+                                query = it
+                                usersViewModel.onSearchQueryChange(query)
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp, vertical = 12.dp),
+                            placeholder = { Text(stringResource(R.string.searchUserByName)) },
+                            leadingIcon = {
+                                Icon(Icons.Default.Search, contentDescription = null)
+                            },
+                            singleLine = true,
+                            shape = RoundedCornerShape(16.dp)
+                        )
+                    }
+                    LazyColumn(
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(users) { user ->
+                            UserItem(user, navigateToUserDetails = {
+                                query = ""
+                                usersViewModel.onSearchQueryChange(query)
+                                navigateToUserDetails.invoke(user)
+                            })
+                        }
                     }
                 }
             }
@@ -127,11 +172,10 @@ fun UsersScreen(
                                 usersViewModel.loadUsers(object : CoroutineErrorHandler {
                                     override fun onError(message: String) {}
                                 })
-                            }
-                        ) {
+                            }) {
                             Icon(Icons.Default.Refresh, contentDescription = null)
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Retry")
+                            Text(stringResource(R.string.retry))
                         }
                     }
                 }
@@ -139,6 +183,5 @@ fun UsersScreen(
 
             is BaseUiState.Uninitialized -> BaseUiState.Uninitialized
         }
-
     }
 }

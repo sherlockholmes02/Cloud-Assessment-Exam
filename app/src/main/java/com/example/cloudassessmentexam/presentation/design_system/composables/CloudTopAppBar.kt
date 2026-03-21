@@ -22,6 +22,7 @@ import com.example.cloudassessmentexam.R
 fun CloudTopAppBar(
     title: String? = null,
     navigationIcon: ImageVector?,
+    actionIcon: ImageVector? = null,
     onNavigationButtonClick: (() -> Unit)? = null,
     onActionButtonClick: (() -> Unit)? = null
 ) {
@@ -49,7 +50,7 @@ fun CloudTopAppBar(
             onActionButtonClick?.let {
                 IconButton(onClick = { onActionButtonClick.invoke() }) {
                     Icon(
-                        Icons.Default.Search,
+                        actionIcon ?: Icons.Default.Search,
                         contentDescription = null
                     )
                 }

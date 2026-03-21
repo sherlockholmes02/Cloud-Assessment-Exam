@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam.data
+package com.example.cloudassessmentexam.data.data_sources
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable

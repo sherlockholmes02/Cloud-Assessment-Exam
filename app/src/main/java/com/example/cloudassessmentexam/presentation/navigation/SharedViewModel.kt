@@ -1,7 +1,7 @@
 package com.example.cloudassessmentexam.presentation.navigation
 
 import androidx.lifecycle.ViewModel
-import com.example.cloudassessmentexam.data.User
+import com.example.cloudassessmentexam.data.data_sources.User
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
