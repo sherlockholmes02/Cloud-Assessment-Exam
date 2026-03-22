@@ -1,9 +1,10 @@
 package com.example.cloudassessmentexam.presentation.features.users
 
 import com.example.cloudassessmentexam.core.network.CoroutineErrorHandler
-import com.example.cloudassessmentexam.data.data_sources.User
+import com.example.cloudassessmentexam.domain.entities.User
 import com.example.cloudassessmentexam.data.models.BaseUiState
 import com.example.cloudassessmentexam.domain.use_cases.GetUsersUseCase
+import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,10 +17,9 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
+import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 
 @OptIn(ExperimentalCoroutinesApi::class)

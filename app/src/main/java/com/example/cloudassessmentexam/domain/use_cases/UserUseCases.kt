@@ -1,7 +1,7 @@
 package com.example.cloudassessmentexam.domain.use_cases
 
 import com.example.cloudassessmentexam.core.usecase.UseCaseNoParam
-import com.example.cloudassessmentexam.data.data_sources.User
+import com.example.cloudassessmentexam.domain.entities.User
 import com.example.cloudassessmentexam.data.models.BaseUiState
 import com.example.cloudassessmentexam.domain.repositories.UserRepository
 import kotlinx.coroutines.flow.Flow

@@ -1,12 +1,12 @@
 package com.example.cloudassessmentexam.presentation.features.users
 
 import com.example.cloudassessmentexam.core.util.convertLongToDateString
+import junit.framework.TestCase.assertEquals
+import org.junit.Test
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class UtilsTest {
 

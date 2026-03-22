@@ -42,7 +42,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.cloudassessmentexam.R
 import com.example.cloudassessmentexam.core.network.CoroutineErrorHandler
-import com.example.cloudassessmentexam.data.data_sources.User
+import com.example.cloudassessmentexam.domain.entities.User
 import com.example.cloudassessmentexam.data.models.BaseUiState
 import com.example.cloudassessmentexam.presentation.design_system.composables.CloudTopAppBar
 import com.example.cloudassessmentexam.presentation.design_system.composables.UserItem

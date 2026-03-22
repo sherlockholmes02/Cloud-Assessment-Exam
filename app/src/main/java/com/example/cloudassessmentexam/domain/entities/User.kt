@@ -1,4 +1,4 @@
-package com.example.cloudassessmentexam.data.data_sources
+package com.example.cloudassessmentexam.domain.entities
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
@@ -15,8 +15,4 @@ data class User(
     val location: String?,
     @SerializedName("creation_date")
     val memberSince: Long?,
-)
-
-data class UsersResponse(
-    val items: List<User> = emptyList()
 )

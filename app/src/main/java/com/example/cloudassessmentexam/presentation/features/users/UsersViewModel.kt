@@ -3,7 +3,7 @@ package com.example.cloudassessmentexam.presentation.features.users
 import androidx.lifecycle.viewModelScope
 import com.example.cloudassessmentexam.core.network.CoroutineErrorHandler
 import com.example.cloudassessmentexam.core.viewmodel.BaseViewModel
-import com.example.cloudassessmentexam.data.data_sources.User
+import com.example.cloudassessmentexam.domain.entities.User
 import com.example.cloudassessmentexam.data.models.BaseUiState
 import com.example.cloudassessmentexam.domain.use_cases.GetUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

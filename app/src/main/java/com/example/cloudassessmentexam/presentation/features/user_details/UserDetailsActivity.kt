@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.SubcomposeAsyncImage
 import com.example.cloudassessmentexam.R
 import com.example.cloudassessmentexam.core.util.convertLongToDateString
-import com.example.cloudassessmentexam.data.data_sources.User
+import com.example.cloudassessmentexam.domain.entities.User
 import com.example.cloudassessmentexam.presentation.design_system.composables.CloudTopAppBar
 
 @Composable
