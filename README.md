@@ -144,7 +144,7 @@ This project was completed in a total of **24 hours** of focused development tim
 
 
 ## 🎬 App Demo
-![CloudAssessmentDemo](https://github.com/user-attachments/assets/5c96f55a-6b5a-4245-896b-73acf8976429)
+![Cloud Assessment Exam Demo](https://github.com/user-attachments/assets/5a73b482-1a03-4161-a2bc-9a39b57dfe3d)
 ---
 
 ## 🎯 Purpose of This Project
