@@ -12,18 +12,17 @@ class GetUsersUseCase @Inject constructor(
     private val userRepository: UserRepository,
 ) : UseCaseNoParam<Flow<BaseUiState<List<User>>>>() {
     override fun execute(): Flow<BaseUiState<List<User>>> {
-        return userRepository.getUsers()
-            .map { usersResponse ->
-                when (usersResponse) {
-                    is BaseUiState.Failure -> BaseUiState.Failure(
-                        errorMessage = usersResponse.errorMessage,
-                        code = usersResponse.code
-                    )
-                    is BaseUiState.Success ->
-                        BaseUiState.Success(usersResponse.data.items)
-                    BaseUiState.Loading -> BaseUiState.Loading
-                    BaseUiState.Uninitialized -> BaseUiState.Uninitialized
-                }
+        return userRepository.getUsers().map { usersResponse ->
+            when (usersResponse) {
+                is BaseUiState.Failure -> BaseUiState.Failure(
+                    errorMessage = usersResponse.errorMessage, code = usersResponse.code
+                )
+
+                is BaseUiState.Success -> BaseUiState.Success(usersResponse.data.items.sortedBy { it.displayName?.lowercase() })
+
+                BaseUiState.Loading -> BaseUiState.Loading
+                BaseUiState.Uninitialized -> BaseUiState.Uninitialized
             }
+        }
     }
 }

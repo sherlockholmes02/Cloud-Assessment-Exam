@@ -30,7 +30,7 @@ class UsersViewModel @Inject constructor(
                     val filtered = if (query.isBlank()) state.data
                     else state.data.filter {
                         it.displayName?.contains(query, ignoreCase = true) == true
-                    }
+                    }.take(20)
                     BaseUiState.Success(filtered)
                 }
                 is BaseUiState.Loading -> BaseUiState.Loading
